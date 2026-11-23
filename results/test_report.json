@@ -1,0 +1,88 @@
+{
+ "end_on_last_step": {
+  "envs": 3
+ },
+ "gae_real_rollout": {
+  "decisions": 256,
+  "max_abs_diff": 0.0
+ },
+ "no_masking_A1": {
+  "decisions": 10000,
+  "action_counts": [
+   3314,
+   3308,
+   3378
+  ]
+ },
+ "no_masking_A2": {
+  "decisions": 10000,
+  "action_counts": [
+   3314,
+   3308,
+   3378
+  ]
+ },
+ "no_masking_A3": {
+  "decisions": 10000,
+  "action_counts": [
+   1095,
+   1106,
+   1119,
+   1098,
+   1050,
+   1158,
+   1107,
+   1131,
+   1136
+  ]
+ },
+ "parity_duration1": {
+  "truncations": 4,
+  "max_abs_diff": {
+   "rewards": 0.0,
+   "adv": 0.0,
+   "ret": 0.0,
+   "losses": 0.0,
+   "update": 0.0,
+   "weights_after_learn": 0.0
+  }
+ },
+ "primitive_accounting": {
+  "episodes": 50,
+  "successes": 25,
+  "truncations": 25
+ },
+ "primitive_budget_A1": {
+  "prim_final": 2000,
+  "decisions": 2000,
+  "updates": 28
+ },
+ "primitive_budget_A3": {
+  "prim_final": 2000,
+  "decisions": 848,
+  "updates": 12
+ },
+ "replay_hand_discount": {
+  "macros": 14,
+  "max_abs_err_R": 0.0,
+  "max_abs_err_gamma": 0.0
+ },
+ "seed_reproducibility": {
+  "same_seed_max_diff": 0.0,
+  "different_seed_max_diff": 1.1104021072387695
+ },
+ "terminal_observation": {
+  "truncations_checked": 68
+ },
+ "termination_mid_macro": {
+  "start_state": [
+   0.43900000000000006,
+   0.03
+  ],
+  "terminations": 78
+ },
+ "truncation_mid_macro": {
+  "bootstraps": 67,
+  "truncations_mid_macro": 30
+ }
+}
