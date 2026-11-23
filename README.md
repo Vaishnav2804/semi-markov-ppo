@@ -76,10 +76,21 @@ returns, losses, parameter updates and final weights. The maximum observed diffe
 ## Installation
 
 ```bash
+pip install "git+https://github.com/Vaishnav2804/semi-markov-ppo.git"
+```
+
+PyTorch's default Linux wheel includes CUDA. For a CPU-only install, add the PyTorch CPU index:
+
+```bash
+pip install --extra-index-url https://download.pytorch.org/whl/cpu "git+https://github.com/Vaishnav2804/semi-markov-ppo.git"
+```
+
+To run the examples or the tests, clone the repository and install it with the development extras (pytest, ruff,
+pandas, matplotlib):
+
+```bash
 git clone https://github.com/Vaishnav2804/semi-markov-ppo.git
 cd semi-markov-ppo
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt     # for CPU-only torch: pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu first
 pip install -e ".[dev]"
 ```
 
@@ -162,6 +173,9 @@ establish that variable-duration actions improve learning efficiency in general.
 ![learning curves](results/mountaincar/learning_curves.png)
 
 Per-seed results and the experimental details are in [results/mountaincar/README.md](results/mountaincar/README.md).
+
+To reproduce with the exact package versions used for these results, install `requirements.txt` first
+(`pip install -r requirements.txt`, then `pip install -e .`).
 
 ```bash
 python examples/mountaincar/train.py --arm A3 --seed 0 --prim_steps 1000000 --out runs/A3_s0
