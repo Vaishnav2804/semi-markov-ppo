@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "A PyTorch implementation of Semi-Markov Proximal Policy Optimization (PPO), extending sb3-contrib MaskablePPO (Stable-Baselines3 ecosystem) with variable-duration actions, transition-specific discounting, and variable-duration GAE."
 readme = "README.md"
 requires-python = ">=3.10"
-# license: intentionally not declared until the owner approves it (see docs/licensing.md). Proposed: license = "MIT"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 dependencies = [
   "stable-baselines3>=2.7.0,<2.8",
   "sb3-contrib>=2.7.0,<2.8",

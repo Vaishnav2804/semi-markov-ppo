@@ -33,17 +33,11 @@ Use **MIT**. The adapted code is MIT-licensed, so the whole repository can stay 
 matches the ecosystem it plugs into. Apache-2.0 would also be compatible and adds an explicit patent grant, at the
 cost of NOTICE conventions. GPL-family licences would restrict downstream use in the SB3 ecosystem.
 
-**Status: not approved.** A draft MIT `LICENSE` with a placeholder copyright holder exists in the working copy. It is
-deliberately not committed, and `pyproject.toml` and `CITATION.cff` declare no licence. Source files carry no SPDX
-licence identifier. `src/smppo/ppo.py` states that its licence is pending and points to `THIRD_PARTY_NOTICES.md`.
-Until a licence is committed, the repository grants no licence for the project's own code. The adapted sb3-contrib
-portions remain under MIT regardless, because that licence must be kept with them.
+**Status: decided by the owner.** The repository is licensed under MIT, Copyright (c) 2026 Vaishnav (`LICENSE`).
+`pyproject.toml` declares MIT. The adapted sb3-contrib portions stay under their own MIT notice
+(`THIRD_PARTY_NOTICES.md`).
 
-The owner must decide:
-* the licence (MIT recommended);
-* the copyright holder: an individual, or an institution if institutional policy assigns ownership.
-
-## External approvals still required (none obtained)
+## External approvals the owner may need to confirm (not checked by this repository)
 
 * **University.** Its intellectual-property policy for software written by students or employees, and whether an
   open-source release must be disclosed to, or approved by, a technology-transfer or research office.

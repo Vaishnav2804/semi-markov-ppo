@@ -1,4 +1,4 @@
-# Licence: pending owner approval (proposed MIT). The adapted sb3-contrib code is MIT; see THIRD_PARTY_NOTICES.md.
+# SPDX-License-Identifier: MIT  (Copyright (c) 2026 Vaishnav; adapted sb3-contrib code: see THIRD_PARTY_NOTICES.md)
 # Semi-Markov MaskablePPO.
 #
 # The algorithm below is copied unchanged from the validated research implementation (see docs/design.md,

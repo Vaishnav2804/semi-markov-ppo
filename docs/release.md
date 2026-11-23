@@ -2,10 +2,8 @@
 
 The first release is `v0.1.0`. Publishing to PyPI is not planned for this release.
 
-1. Resolve the owner decisions listed in `docs/licensing.md`: licence, copyright holder and external approvals.
-2. Add the approved `LICENSE`. In `pyproject.toml`, add the licence field, for example `license = "MIT"` (needs
-   setuptools ≥ 77) or `license = { text = "MIT" }`. Complete `CITATION.cff`: authors, ORCID, `repository-code`,
-   `date-released`, `license`.
+1. Licence: MIT, Copyright (c) 2026 Vaishnav (done). Confirm any external approvals listed in `docs/licensing.md`.
+2. Complete `CITATION.cff`: authors, ORCID, `repository-code`, `date-released`, `license`.
 3. In a fresh environment, run:
    `pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt ruff && pip install -e . --no-deps`,
    then `ruff check . && ruff format --check . && pytest -q`.

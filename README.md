@@ -5,8 +5,7 @@ A PyTorch implementation of Semi-Markov Proximal Policy Optimization (PPO). It e
 ecosystem) with variable-duration actions, transition-specific discounting and variable-duration GAE. Package name:
 `smppo`.
 
-> Status: version 0.1.0, pre-release. The licence has not been granted yet. Until a `LICENSE` file is added, no
-> licence is granted to reuse this code.
+> Version 0.1.0. Licensed under the [MIT License](LICENSE).
 
 ## The problem
 
