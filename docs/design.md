@@ -34,6 +34,6 @@ from `ruff format`, and two lint rules are ignored for that file only.
 
 ## Known gaps
 
-* `SubprocVecEnv` is not covered by the tests.
+* `SubprocVecEnv` is covered by one test (same rollout as `DummyVecEnv`, including truncations and autoreset); training runs in the benchmark used `DummyVecEnv`.
 * Continuous action spaces are not supported, because MaskablePPO does not support them.
 * λ and entropy are per decision, not per unit of time.
