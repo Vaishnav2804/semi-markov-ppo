@@ -138,3 +138,31 @@ def test_chain_truncation_single_bootstrap_with_masking():
         else:
             assert np.isclose(b.rewards[t, 0], 1.0)
     assert n_trunc == m.n_bootstraps and n_trunc > 0
+
+
+def test_subproc_vecenv_autoreset_matches_dummy(report):
+    """Truncations and autoreset in worker processes give the same rollout as in-process DummyVecEnv."""
+    from stable_baselines3.common.utils import set_random_seed
+    from stable_baselines3.common.vec_env import SubprocVecEnv, VecNormalize
+
+    fns = [lambda: _a3(gym.make(ENV_ID, max_episode_steps=8)) for _ in range(3)]
+    bufs, infos, boots = [], [], []
+    for vec_cls in (DummyVecEnv, SubprocVecEnv):
+        venv = VecNormalize(vec_cls(fns), norm_obs=True, norm_reward=False, gamma=GAMMA)
+        m = SemiMarkovMaskablePPO("MlpPolicy", venv, seed=9, n_steps=64, batch_size=64, gamma=GAMMA)
+        set_random_seed(9)
+        spy, (b,) = collect(m)
+        bufs.append(b)
+        infos.append(spy.infos)
+        boots.append(m.n_bootstraps)
+        venv.close()
+    d, s = bufs
+    assert boots[0] == boots[1] > 0
+    for name in ("observations", "actions", "rewards", "gammas", "ends", "advantages", "returns"):
+        assert np.allclose(getattr(d, name), getattr(s, name), atol=1e-6), name
+    for row_d, row_s in zip(*infos):
+        for i_d, i_s in zip(row_d, row_s):
+            assert i_d["truncated_cutoff"] == i_s["truncated_cutoff"] and i_d["k"] == i_s["k"]
+            if i_d["truncated_cutoff"]:
+                assert np.allclose(i_d["terminal_observation"], i_s["terminal_observation"], atol=1e-6)
+    report["subproc_vs_dummy"] = dict(bootstraps=boots[0], decisions=int(d.rewards.size))

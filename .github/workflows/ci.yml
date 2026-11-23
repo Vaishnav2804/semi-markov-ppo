@@ -1,0 +1,66 @@
+# Lint, tests and a training smoke test. Read-only token; no secrets; nothing is published.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pinned:
+    name: pinned versions (requirements.txt)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CUDA_VISIBLE_DEVICES: ""
+      OMP_NUM_THREADS: "1"
+    steps:
+      # Actions pinned to the commit SHAs of the v4 / v5 tags (resolved 2026-11-23 with git ls-remote).
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt ruff==0.17.6
+          pip install -e . --no-deps
+      - name: Ruff
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Pytest
+        run: pytest -q
+      - name: Training smoke test (20k primitive steps)
+        run: python examples/mountaincar/train.py --arm A3 --seed 0 --prim_steps 20000 --out "$RUNNER_TEMP/smoke_A3"
+
+  declared:
+    name: install from pyproject.toml (newest allowed versions)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CUDA_VISIBLE_DEVICES: ""
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install --extra-index-url https://download.pytorch.org/whl/cpu ".[dev]"
+      - name: Pytest
+        run: pytest -q
