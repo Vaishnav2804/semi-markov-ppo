@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-examples = ["pandas>=2.0", "matplotlib>=3.7"]
+examples = ["pandas>=2.0", "matplotlib>=3.7", "gymnasium[classic-control]>=1.0"]  # classic-control: pygame, for make_gif.py
 dev = ["pytest>=8", "ruff>=0.6", "pandas>=2.0", "matplotlib>=3.7"]
 
 [tool.setuptools.packages.find]
