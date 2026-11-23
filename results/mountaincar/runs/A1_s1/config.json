@@ -1,0 +1,43 @@
+{
+ "arm": "A1",
+ "seed": 1,
+ "prim_steps": 1000000,
+ "n_envs": 16,
+ "durations": null,
+ "ppo": {
+  "n_steps": "16",
+  "batch_size": "64",
+  "n_epochs": "4",
+  "learning_rate": "0.0003",
+  "gamma": "0.99",
+  "gae_lambda": "0.98",
+  "clip_range": "0.2",
+  "ent_coef": "0.0",
+  "vf_coef": "0.5",
+  "max_grad_norm": "0.5",
+  "normalize_advantage": "True",
+  "device": "cpu",
+  "verbose": "0",
+  "policy_kwargs": "{'net_arch': [64, 64]}"
+ },
+ "vecnormalize": "norm_obs=True, norm_reward=False",
+ "eval_seeds": [
+  10000,
+  10099
+ ],
+ "argv": [
+  "train.py",
+  "--arm",
+  "A1",
+  "--seed",
+  "1",
+  "--prim_steps",
+  "1000000"
+ ],
+ "sha256": {
+  "smppo.py": "f3f24511a9701cb6836850f2873c4ac0ac18cd70c95c03470cdcc9803512bfd9",
+  "mc_smdp.py": "6b98cbc1dcce33f73770b3558d001492e03225fc7dd2bf626659c97ee39c626a",
+  "train.py": "9b4f47e89508737f7a61dba91677aa71a71a3d08c2367121b52e3a35d0eca187",
+  "PLAN.md": "b682e0a562a35a56023e0cc83dd1e9028fdff3d7d7d66c2b2395e95669090032"
+ }
+}

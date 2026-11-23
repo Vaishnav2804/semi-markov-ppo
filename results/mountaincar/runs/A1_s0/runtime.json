@@ -1,0 +1,11 @@
+{
+ "wall_s": 333.7,
+ "prim_steps_final": 1000000,
+ "overshoot": 0,
+ "stopped_by_budget": true,
+ "decisions": 1000000,
+ "updates": 15624,
+ "bootstraps": null,
+ "maxrss_MB": 665,
+ "eval_success": 1.0
+}
